@@ -4,9 +4,8 @@ Under are some examples for using Powershell to fetch data from the Hydrological
 
 Powershell is installed on most Windows machines and is a powerfull scripting language. It natively parses json, which makes it a good fit for querying the HydAPI
 
-
 ## Setup
-Note: You may need to change the 
+Note: You may need to change the execution policy for Powershell-scripts:
 
 ```powershell
 PS> Set-ExecutionPolicy -RemoteSigned
@@ -22,22 +21,33 @@ If you haven't generated an API key yet, you can do that on this page:
 
 https://hydapi.nve.no/users
 
-
+In the examples below, substitute the text INSERT_KEY_HERE with the key you obtained.
 
 ## Getting metadata (Parameters and Series)
 
-The Get-Metadata.ps1 is a script for query the HydAPI for metadata for parameters
+The Get-Metadata.ps1 is a script for query the HydAPI for metadata.
 
-Currently, you can 
+Currently, you can query for parameters and series.
 
-
-Getting ser
+Get list of all parameters:
 
 ```powershell
-
+PS> .\Get-Metadata.ps1 -ApiKey "INSERT_KEY_HERE" -Parameters
 ```
 
-In addition, the HydAPI supports quering for stations, rating curves, but this is not currently implemented in the script.
+Get list of all series:
+
+```powershell
+PS> .\Get-Metadata.ps1 -ApiKey "INSERT_KEY_HERE" -Series
+```
+
+Get series that has the subtring "gryta"
+
+```powershell
+PS> .\Get-Metadata.ps1 -ApiKey "INSERT_KEY_HERE" -Series -StationName "gryta"
+```
+
+In addition, the HydAPI supports quering for stations, rating curves and percentiles, but this is not currently implemented in the script.
 
 ## Getting observations
 
@@ -65,12 +75,10 @@ PS> $result = .\Get-Observations.ps1 -ApiKey "INSERT_KEY_HERE" -StationId 6.10.0
 PS> $result.data | Export-Csv -Path output.csv
 ```
 
-
-
 ## Insert API key into scripts
 If you get tired of writing the ApiKey for every call, you can modify the scripts and insert the api key directly into the script.
 
-Edit Get-Metadata.ps1 and/or 
+Edit Get-Metadata.ps1 and/or Get-Observations.ps1:
 
 Substitute:
 ```powershell
@@ -79,5 +87,5 @@ Substitute:
 
 with:
 ```powershell
-[Parameter(Mandatory=$false, HelpMessage="To get an API-Key, go too https://hydapi.nve.no/users")][string] $ApiKey="INSERT_YOUR_KEY",
+[Parameter(Mandatory=$false, HelpMessage="To get an API-Key, go too https://hydapi.nve.no/users")][string] $ApiKey="INSERT_KEY_HERE",
 ```
