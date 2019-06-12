@@ -2,7 +2,7 @@
 
 Under are some examples for using Powershell to fetch data from the Hydrological API (HydAPI).
 
-Powershell is installed on most Windows machines and is a powerfull scripting language. It natively parses json, which makes it a good fit for querying the HydAPI
+Powershell is installed on most Windows machines and is a powerfull scripting language. It natively parses json, which makes it a good fit for querying the HydAPI.
 
 ## Setup
 Note: You may need to change the execution policy for Powershell-scripts:
@@ -25,7 +25,7 @@ In the examples below, substitute the text INSERT_KEY_HERE with the key you obta
 
 ## Getting metadata (Parameters and Series)
 
-The Get-Metadata.ps1 is a script for query the HydAPI for metadata.
+The Get-Metadata.ps1 is a script for querying the HydAPI for metadata.
 
 Currently, you can query for parameters and series.
 
