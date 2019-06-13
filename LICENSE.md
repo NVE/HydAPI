@@ -1,0 +1,1 @@
+[Norwegian License for Open government Data (NLOD)](https://data.norge.no/nlod/en/1.0)
