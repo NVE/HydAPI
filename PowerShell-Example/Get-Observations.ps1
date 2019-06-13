@@ -4,11 +4,10 @@ param(
     [Parameter(Mandatory=$true)][string] $Parameter,
     [Parameter(Mandatory=$true)][string] $ResolutionTime,
     [Parameter(Mandatory=$false)][string] $From,
-    [Parameter(Mandatory=$false)][string] $To, 
-    [Parameter(Mandatory=$false)][string] $Format="Csv"
+    [Parameter(Mandatory=$false)][string] $To 
 )
 
-$baseUrl = "https://prod-hydapi01-apiapp.azurewebsites.net/api/v0.9/Observations"
+$baseUrl = "https://hydapi.nve.no/api/v0.9/Observations"
 
 function CallMethod ([string] $uri, [string] $apiKey)
 {
@@ -39,10 +38,3 @@ if ($To)
 }
 
 CallMethod $uri $ApiKey
-
-
-
-
-
-
-

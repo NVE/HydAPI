@@ -5,7 +5,8 @@ param(
     [Parameter(Mandatory=$false)] [string] $StationName
 )
 
-$baseUrl = "https://prod-hydapi01-apiapp.azurewebsites.net/api/v0.9"
+
+$baseUrl = "https://hydapi.nve.no/api/v0.9"
 
 $parametersUrl = "$($baseUrl)/Parameters"
 $seriesUrl = "$($baseUrl)/Series"
@@ -24,9 +25,10 @@ function CallMethod ([string] $uri, [string] $apiKey)
     return Invoke-RestMethod @request
 }
 
+
 if ($Parameters) 
 {
-    CallMethod $parametersUrl $ApiKey    
+    CallMethod $parametersUrl $ApiKey
     exit
 } 
 
