@@ -27,15 +27,12 @@ namespace ConsoleApp1
         }
         static void Main(string[] args)
         {
-
-
-            
-
+    
             WebClient webClient = new WebClient() { Encoding = Encoding.UTF8 };
             try
             {
-                webClient.Headers["X-API-Key"] = "ZmFjYWZlYWUtMDg4Mi00OWUyLWExYTMtNDVjMGNhNTc1ZjUw";
-                var downloadedString= webClient.DownloadString("http://localhost:54779/api/v0.9/Parameters");
+                webClient.Headers["X-API-Key"] = "";
+                var downloadedString= webClient.DownloadString("http://hydapi.nve.no/api/v0.9/Parameters");
 
                 var result = JsonConvert.DeserializeObject<Result>(downloadedString);
 
