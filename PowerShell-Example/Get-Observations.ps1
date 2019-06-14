@@ -1,5 +1,5 @@
 param(
-    [Parameter(Mandatory=$true, HelpMessage="To get an API-Key, go too https://hydapi.nve.no/users")][string] $ApiKey,
+    [Parameter(Mandatory=$true, HelpMessage="To get an API-Key, go to https://hydapi.nve.no/users")][string] $ApiKey,
     [Parameter(Mandatory=$true)][string] $StationId,
     [Parameter(Mandatory=$true)][string] $Parameter,
     [Parameter(Mandatory=$true)][string] $ResolutionTime,
