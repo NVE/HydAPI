@@ -2,11 +2,11 @@
 
 Below are some examples for using Python to fetch data from the Hydrological API (HydAPI).
 
-# Setup
+## Setup
 
 You may need to install Python which is available on many platforms. See [Python homepage](https://www.python.org/).
 
-# Generate API-key
+## Generate API-key
 
 If you haven't generated an API-key yet, you can do that on this page:
 
@@ -14,7 +14,7 @@ https://hydapi.nve.no/users
 
 In the examples below, substitute the text INSERT_KEY_HERE with the API-key you obtained. 
 
-# Getting observations
+## Getting observations
 
 Getting the latest observed value for a time series:
 ```
