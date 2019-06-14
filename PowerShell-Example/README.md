@@ -1,4 +1,4 @@
-# Powershell Example
+# Powershell example
 
 Below are some examples for using Powershell to fetch data from the Hydrological API (HydAPI).
 

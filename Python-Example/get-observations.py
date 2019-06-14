@@ -70,7 +70,7 @@ def main(argv):
         usage()
         sys.exit(2)
 
-    baseurl = "https://test-hydapi01-apiapp.azurewebsites.net/api/v0.9/Observations?StationId={station}&Parameter={parameter}&ResolutionTime={resolution_time}"
+    baseurl = "https://hydapi.nve.no/api/v0.9/Observations?StationId={station}&Parameter={parameter}&ResolutionTime={resolution_time}"
     
     url = baseurl.format(station=station, parameter=parameter, resolution_time=resolution_time)
 
