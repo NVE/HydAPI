@@ -2,8 +2,7 @@
 
 This is an example of a C# program that is an example of how to use the Hydrological API (HydAPI). 
 
-It is a .NET Core console application that can be run on several platforms (Windows Linux)
-
+It is a .NET Core console application that can be run on several platforms (Windows, Linux and iOS).
 
 ## Setup
 
@@ -19,7 +18,9 @@ https://hydapi.nve.no/users
 
 In the examples below, substitute the text INSERT_KEY_HERE with the API-key you obtained. 
 
-# Getting 
+# Getting parameters from the API
+
+This example will fetch available parameters from the API and list them. It can also be extended to fetching other types of data, using the same principles as described in the example.
 
 To build the example, write:
 ```
@@ -29,5 +30,3 @@ To run the example, write
 ```
 dotnet run <INSERT_KEY_HERE>
 ```
-
-T
