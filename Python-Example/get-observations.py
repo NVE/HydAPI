@@ -15,20 +15,20 @@ def usage():
     print()
     print("Get observations from the NVE Hydrological API (HydAPI)")
     print("Parameters:")
-    print("   -s: StationId (mandatory)")
-    print("   -p: Parameter (mandatory)")
+    print("   -a: ApiKey (mandatory). ")
+    print("   -s: StationId (mandatory). Several stations can be given separated by comma. Example \"6.10.0,12.209.0")
+    print("   -p: Parameter (mandatory). Several Parameters can be given se")
     print("   -r: Resolution time. 0 (instantenous),60 (hourly) or 1440 (daily). (mandatory)")
-    print("   -f: From time. Given on format \"YYYY-MM-DD\" or \"YYYY-MM-DDThh:mm:ss\" (optional)")
-    print("   -t: To time. Given on format \"YYYY-MM-DD\" or \"YYYY-MM-DDThh:mm:ss\" (optional)")
+    print("   -t: Reference time. See documentation for referencetime. Example \"P1D/\", gives one day back in time. If none given, the last observed value will be returned")
     print("   -h: This help")
     print()
     print("Example:")
-    print("    python get-observations.py -a \"INSERT_APIKEY_HERE\" -s 6.10.0 -p 1000 -r 60 -f \"2019-01-01T10:00:00\" -t \"2019-01-01T16:00:00")
+    print("    python get-observations.py -a \"INSERT_APIKEY_HERE\" -s \"6.10.0,12.209.0\" -p \"1000,1001\" -r 60 -t \"P1D/\"")
     print()
 
 def main(argv):
     try:
-        opts, args = getopt.getopt(argv, "a:s:p:r:hf:t:")
+        opts, args = getopt.getopt(argv, "a:s:p:r:ht:")
     except getopt.GetoptError as err:
         print(str(err))  # will print something like "option -a not recognized"
         usage()
@@ -38,8 +38,7 @@ def main(argv):
     parameter = None
     resolution_time = None
     api_key = None
-    from_time = None
-    to_time = None
+    reference_time = None
      
     for opt, arg in opts:
         if opt == "-s":
@@ -50,10 +49,8 @@ def main(argv):
             resolution_time = arg
         elif opt == "-a":
             api_key = arg
-        elif opt == "-f":
-            from_time = arg
         elif opt == "-t":
-            to_time = arg
+            reference_time = arg
         elif opt == "-h":
             usage()
             sys.exit()
@@ -70,15 +67,12 @@ def main(argv):
         usage()
         sys.exit(2)
 
-    baseurl = "https://hydapi.nve.no/api/v0.9/Observations?StationId={station}&Parameter={parameter}&ResolutionTime={resolution_time}"
+    baseurl = "https://hydapi.nve.no/api/v1/Observations?StationId={station}&Parameter={parameter}&ResolutionTime={resolution_time}"
     
     url = baseurl.format(station=station, parameter=parameter, resolution_time=resolution_time)
 
-    if from_time is not None: 
-        url = "{url}&From={from_time}".format(url=url, from_time=from_time)
-
-    if to_time is not None:
-        url = "{url}&To={to_time}".format(url=url, to_time=to_time)
+    if reference_time is not None: 
+        url = "{url}&ReferenceTime={reference_time}".format(url=url, reference_time=reference_time)
 
     print(url)
     
