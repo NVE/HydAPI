@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using CSharp_Example.Model;
 using Newtonsoft.Json;
 
 namespace CSharp_Example
 {
     class Program
     {
-        private const string HYDAPI_PARAMETERS_URL = "https://hydapi.nve.no/api/v0.9/Parameters";
+        private const string HYDAPI_PARAMETERS_URL = "https://hydapi.nve.no/api/v1/Parameters";
         private const string HYDAPI_APIKEY_HEADER = "X-API-Key";
 
         static void Main(string[] args)
@@ -48,24 +48,6 @@ namespace CSharp_Example
                     Console.WriteLine($"Something went wrong: {ex.Message}");
                 }
             }
-        }
-
-        class Result
-        {
-            public string CurrentLink { get; set; }
-            public string ApiVersion { get; set; }
-            public string CreatedAt { get; set; }
-            public string QueryTime { get; set; }
-            public string ItemCount { get; set; }
-            public IEnumerable<Parameters> Data { get; set; }
-        }
-
-        class Parameters
-        {
-            public string Parameter { get; set; }
-            public string ParameterName { get; set; }
-            public string ParameterNameEng { get; set; }
-            public string Unit { get; set; }
         }
     }
 }

@@ -3,11 +3,10 @@ param(
     [Parameter(Mandatory=$true)][string] $StationId,
     [Parameter(Mandatory=$true)][string] $Parameter,
     [Parameter(Mandatory=$true)][string] $ResolutionTime,
-    [Parameter(Mandatory=$false)][string] $From,
-    [Parameter(Mandatory=$false)][string] $To 
+    [Parameter(Mandatory=$false)][string] $ReferenceTime
 )
 
-$baseUrl = "https://hydapi.nve.no/api/v0.9/Observations"
+$baseUrl = "https://hydapi.nve.no/api/v1/Observations"
 
 function CallMethod ([string] $uri, [string] $apiKey)
 {
@@ -27,14 +26,9 @@ function CallMethod ([string] $uri, [string] $apiKey)
 
 $uri = "$($BaseUrl)?StationId=$($StationId)&Parameter=$($Parameter)&ResolutionTime=$($ResolutionTime)"
 
-if ($From)
+if ($ReferenceTime)
 {
-    $uri = "$($uri)&From=$($From)"
-}
-
-if ($To)
-{
-    $uri = "$($uri)&To=$($To)"
+    $uri = "$($uri)&ReferenceTime=$($ReferenceTime)"
 }
 
 CallMethod $uri $ApiKey
