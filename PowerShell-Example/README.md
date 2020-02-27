@@ -68,7 +68,7 @@ The Get-Observations.ps1 script is a script for query for observations.
 This query will get all observations in 2018 for stage (parameter 1000) in daily values (resolution time 1440 minutes):
 
 ```powershell
-PS> .\Get-Observations.ps1 -ApiKey "INSERT_KEY_HERE" -StationId 6.10.0 -Parameter 1000 -ResolutionTime 1440 -From 2018-01-01 -To 2018-12-31
+PS> .\Get-Observations.ps1 -ApiKey "INSERT_KEY_HERE" -StationId 6.10.0 -Parameter 1000 -ResolutionTime 1440 -ReferenceTime "2018-01-01/2018-12-31"
 PS> $result.data | ft
 ```
 
@@ -78,7 +78,7 @@ You can use the Get-Metadata.ps1 to get other StationIds for other stations. The
 You can also easily export the data to CSV using the Export-Csv Powershell-command: 
 
 ```powershell
-PS> $result = .\Get-Observations.ps1 -ApiKey "INSERT_KEY_HERE" -StationId 6.10.0 -Parameter 1000 -ResolutionTime 1440 -From 2018-01-01 -To 2018-12-31
+PS> $result = .\Get-Observations.ps1 -ApiKey "INSERT_KEY_HERE" -StationId 6.10.0 -Parameter 1000 -ResolutionTime 1440 -ReferenceTime "2018-01-01/2018-12-31"
 PS> $result.data | Export-Csv -Path output.csv -Delimiter ";" -Encoding UTF8
 ```
 
