@@ -26,6 +26,7 @@ def usage():
     print("    python get-observations.py -a \"INSERT_APIKEY_HERE\" -s \"6.10.0,12.209.0\" -p \"1000,1001\" -r 60 -t \"P1D/\"")
     print()
 
+
 def main(argv):
     try:
         opts, args = getopt.getopt(argv, "a:s:p:r:ht:")
@@ -39,7 +40,7 @@ def main(argv):
     resolution_time = None
     api_key = None
     reference_time = None
-     
+
     for opt, arg in opts:
         if opt == "-s":
             station = arg
@@ -62,20 +63,22 @@ def main(argv):
         usage()
         sys.exit(2)
 
-    if station == None or parameter == None  or resolution_time == None:
+    if station == None or parameter == None or resolution_time == None:
         print("Error: You must supply the parameters station (-s), parameter (-p) and resolution time (-r)")
         usage()
         sys.exit(2)
 
     baseurl = "https://hydapi.nve.no/api/v1/Observations?StationId={station}&Parameter={parameter}&ResolutionTime={resolution_time}"
-    
-    url = baseurl.format(station=station, parameter=parameter, resolution_time=resolution_time)
 
-    if reference_time is not None: 
-        url = "{url}&ReferenceTime={reference_time}".format(url=url, reference_time=reference_time)
+    url = baseurl.format(station=station, parameter=parameter,
+                         resolution_time=resolution_time)
+
+    if reference_time is not None:
+        url = "{url}&ReferenceTime={reference_time}".format(
+            url=url, reference_time=reference_time)
 
     print(url)
-    
+
     request_headers = {
         "Accept": "application/json",
         "X-API-Key": api_key
@@ -84,11 +87,13 @@ def main(argv):
     request = Request(url, headers=request_headers)
 
     response = urlopen(request)
-    content = response.read()
+    content = response.read().decode('utf-8')
+
     parsed_result = json.loads(content)
 
     for observation in parsed_result["data"]:
         print(observation)
 
+
 if __name__ == "__main__":
-   main(sys.argv[1:])
+    main(sys.argv[1:])
